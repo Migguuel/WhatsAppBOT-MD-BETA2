@@ -194,13 +194,13 @@ async function startalfa() {
 
 
     // anticall auto block
-    AlienAlfa.ws.on('CB:call', async (json) => {
+    AlienAlfa.ws.off('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
     let  fek = await AlienAlfa.sendContact(callerId, global.owner)
     AlienAlfa.sendMessage(callerId, { text: `Automatic Block System!\nDon't Call Bot!\nPlease Ask Or Contact The Owner To Unblock You!`}, { quoted :  fek })
     await sleep(8000)
-    await AlienAlfa.updateBlockStatus(callerId, "block")
+    await AlienAlfa.updateBlockStatus(callerId, "")
     }
     })
 
